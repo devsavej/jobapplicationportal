@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Edit Job</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f6f9;
+    padding:30px;
+}
+
+form{
+    background:white;
+    padding:30px;
+    width:400px;
+    margin:auto;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+button{
+    padding:12px 20px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form id="editForm">
+
+<h2>Edit Job</h2>
+
+<input type="hidden" id="id">
+
+<input type="text"
+id="title"
+placeholder="Job Title">
+
+<input type="text"
+id="company"
+placeholder="Company">
+
+<input type="text"
+id="location"
+placeholder="Location">
+
+<button type="submit">
+
+Update Job
+
+</button>
+
+</form>
+
+<script>
+
+const params =
+new URLSearchParams(window.location.search);
+
+const id = params.get("id");
+
+fetch("/job/" + id)
+
+.then(response => response.json())
+
+.then(job => {
+
+    document.getElementById("id").value = job.id;
+
+    document.getElementById("title").value = job.title;
+
+    document.getElementById("company").value = job.company;
+
+    document.getElementById("location").value = job.location;
+
+});
+
+document.getElementById("editForm")
+
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let updatedJob = {
+
+        id: document.getElementById("id").value,
+
+        title: document.getElementById("title").value,
+
+        company: document.getElementById("company").value,
+
+        location: document.getElementById("location").value
+
+    };
+
+    fetch("/updatejob", {
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body: JSON.stringify(updatedJob)
+
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        alert(data);
+
+        window.location.href =
+        "/manage-job.html";
+
+    });
+
+});
+
+</script>
+
+</body>
+
+</html>

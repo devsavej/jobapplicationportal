@@ -1,11 +1,157 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Manage Jobs</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f6f9;
+    padding:30px;
+}
+
+h1{
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+button{
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<h1>Manage Jobs Page</h1>
+<h1>Manage Jobs</h1>
+
+<table>
+
+<thead>
+
+<tr>
+    <th>ID</th>
+    <th>Job</th>
+    <th>Company</th>
+    <th>Location</th>
+    <th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="jobTable">
+
+</tbody>
+
+</table>
+
+<script>
+
+fetch("/alljobs")
+
+.then(response => response.json())
+
+.then(data => {
+
+    let table = document.getElementById("jobTable");
+
+    data.forEach(job => {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${job.id}</td>
+
+            <td>${job.title}</td>
+
+            <td>${job.company}</td>
+
+            <td>${job.location}</td>
+
+            <td>
+			
+			    <button onclick="editJob(${job.id})">
+				Edit 
+				</button>
+
+                <button class="delete-btn"
+				onclick="deleteJob(${job.id})">
+                    Delete
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+});
+
+</script>
+
+<script>
+
+function deleteJob(id){
+
+    fetch("/deletejob/" + id)
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        alert("Job Deleted Successfully");
+
+        location.reload();
+
+    });
+
+}
+
+</script>
+
+<script>
+
+function editJob(id){
+
+    window.location.href =
+    "/edit-job.html?id=" + id;
+
+}
+
+</script>
 
 </body>
+
 </html>

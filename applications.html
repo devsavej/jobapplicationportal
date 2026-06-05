@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Applications</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f4f6f9;
+    padding:30px;
+}
+
+h1{
+    margin-bottom:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+th{
+    background:#2563eb;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+button{
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    color:white;
+}
+
+.accept{
+    background:green;
+}
+
+.reject{
+    background:red;
+}
+
+.pending{
+    background:orange;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Applications</h1>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>User ID</th>
+<th>Job ID</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="applicationTable">
+
+</tbody>
+
+</table>
+
+<script>
+
+fetch("/allapplications")
+
+.then(response => response.json())
+
+.then(data => {
+
+    let table =
+    document.getElementById("applicationTable");
+
+    data.forEach(app => {
+
+        table.innerHTML += `
+
+        <tr>
+
+        <td>${app.id}</td>
+
+        <td>${app.userId}</td>
+
+        <td>${app.jobId}</td>
+
+        <td>
+
+        <span class="pending">
+        Pending
+        </span>
+
+        </td>
+
+        <td>
+
+        <button class="accept">
+        Accept
+        </button>
+
+        <button class="reject">
+        Reject
+        </button>
+
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+});
+
+</script>
+
+</body>
+
+</html>

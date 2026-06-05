@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Admin Dashboard</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f4f6f9;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    height:100vh;
+    background:#111827;
+    position:fixed;
+    padding-top:20px;
+}
+
+.sidebar h2{
+    color:white;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:15px 25px;
+    text-decoration:none;
+    font-size:17px;
+}
+
+.sidebar a:hover{
+    background:#2563eb;
+}
+
+/* Main Content */
+
+.main{
+    margin-left:240px;
+    padding:30px;
+}
+
+.main h1{
+    margin-bottom:30px;
+}
+
+/* Cards */
+
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:gray;
+}
+
+.card p{
+    font-size:32px;
+    font-weight:bold;
+    color:#111827;
+}
+
+/* Table */
+
+.table-section{
+    margin-top:40px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+table th{
+    background:#2563eb;
+    color:white;
+}
+
+/* Logout */
+
+.logout{
+    margin-top:30px;
+}
+
+.logout button{
+    padding:12px 20px;
+    border:none;
+    background:red;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.logout button:hover{
+    background:darkred;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <h2>Admin Panel</h2>
+
+    <a href="/dashboard.html">Dashboard</a>
+
+    <a href="/manage-job.html">Manage Jobs</a>
+
+    <a href="/addjob">Add Job</a>
+
+    <a href="/applications.html">Applications</a>
+
+    <a href="/users.html">Users</a>
+
+    <a href="/reports.html">Reports</a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <h1>Welcome Admin 👋</h1>
+
+    <!-- Cards -->
+
+    <div class="card-container">
+
+        <div class="card">
+            <h3>Total Jobs</h3>
+            <p>25</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Users</h3>
+            <p>120</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Applications</h3>
+            <p>80</p>
+        </div>
+
+        <div class="card">
+            <h3>Companies</h3>
+            <p>15</p>
+        </div>
+
+    </div>
+
+    <!-- Recent Jobs Table -->
+
+    <div class="table-section">
+
+        <h2>Recent Jobs</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Job</th>
+                <th>Company</th>
+                <th>Location</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>Java Developer</td>
+                <td>TCS</td>
+                <td>Bangalore</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>Frontend Developer</td>
+                <td>Infosys</td>
+                <td>Pune</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>Backend Developer</td>
+                <td>Wipro</td>
+                <td>Hyderabad</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- Logout -->
+
+    <div class="logout">
+
+        <button onclick="logout()">Logout</button>
+
+    </div>
+
+</div>
+
+<!-- JavaScript -->
+
+<script>
+
+function logout(){
+
+    localStorage.clear();
+
+    window.location.href="/login.html";
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(to right, #2563eb, #1e3a8a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+}
+a { text-decoration: none; }
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Login</h2>
+
+    <form action="/login" method="post">
+        <input type="text" name="email" placeholder="Email"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <button>Login</button>
+    </form>
+
+    <p>New user? <a href="/register.html">Register</a></p>
+</div>
+
+</body>
+</html>
